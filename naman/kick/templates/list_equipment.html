@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>List Your Sports Equipment</title>
+    {% load static %}
+     <style>
+         /* List Equipment Section */
+#list-equipment {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#list-equipment h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+#list-equipment p {
+  text-align: center;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+textarea {
+  resize: none;
+}
+
+.submit-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #007BFF;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+ /* Phone and Address Fields */
+.form-group input[type="tel"],
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+            /* Reset some basic styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-image: url("https://ibb.co/xMQDdCr");
+    color: #333;
+  }
+
+  /* Header Styling */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+  }
+
+  .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  .nav-links {
+    list-style-type: none;
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 0 15px;
+  }
+
+  .nav-links a, .nav-links button {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  button#login-btn {
+    background-color: #333;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+  }
+
+  button#login-btn:hover {
+    background-color: #555;
+  }
+
+ /* Hero Section with background image */
+/* Hero Section */
+#hero {
+    background-image: url("https://i.ibb.co/yRsWGx3/vikram-tkv-JO19-K0-HDDXI-unsplash.png" ); /* Set your background image */
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+  .hero-content {
+    text-align: center;
+    z-index: 2;
+  }
+
+  .hero-content h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+  }
+
+  .hero-content p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+
+  button.get-started {
+    padding: 12px 25px;
+    font-size: 1.1em;
+    color: #fff;
+    background-color: #000;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+  }
+
+  button.get-started:hover {
+    background-color: #333;
+  }
+
+/* About Us Section */
+#about-us {
+    padding: 60px 20px;
+    background: url("https://i.ibb.co/YTWCrGD/wallpaperflare-com-wallpaper-27.png") center/cover no-repeat; /* Add the path to your background image */
+    height: 400px; /* Adjust height as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Set background to black */
+    color: rgb(0, 0, 0);             /* Change text color to white for contrast */
+    text-align: center;
+
+  }
+
+  #about-us .about-content h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+
+  #about-us .about-content p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
+  }
+
+  button.learn-more {
+    padding: 10px 20px;
+    font-size: 1.1em;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  button.learn-more:hover {
+    background-color: #45a049;
+  }
+
+
+
+  /* Contact Us Section */
+  #contact-us {
+    padding: 60px 20px;
+    background-color: #fff;
+    text-align: center;
+  }
+
+  #contact-us h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+
+  #contact-us p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+
+  /* Categories Section */
+  #categories {
+    padding: 60px 20px;
+    background-color: black;  /* Change background color to black */
+    color: white;             /* Set text color to white for contrast */
+    text-align: center;
+  }
+
+#categories h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.category-card {
+  background-color: #3b257c;
+  padding: 30px 20px;
+  width: 180px;  /* Adjusted width */
+  border-radius: 8px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  font-size: 1.1em;
+  text-align: center;
+}
+
+.category-card:hover {
+  transform: scale(1.05);
+  background-color: #ddd;
+}
+
+.category-card[data-sport="football"]:hover {
+  background-color: #000000; /* Highlight football category on hover */
+  color: white;
+}
+
+.category-card[data-sport="cricket"]:hover {
+  background-color: #000000; /* Highlight cricket category on hover */
+  color: white;
+}
+.category-card[data-sport="volleyball"]:hover {
+    background-color: #000000; /* Highlight cricket category on hover */
+    color: white;
+  }
+  .category-card[data-sport="badminton"]:hover {
+    background-color: #000000; /* Highlight cricket category on hover */
+    color: white;
+  }
+  .category-card[data-sport="tennis"]:hover {
+    background-color: #000000; /* Highlight cricket category on hover */
+    color: white;
+  }
+  .category-card[data-sport="basketball"]:hover {
+    background-color: #000000; /* Highlight cricket category on hover */
+    color: white;
+  }
+
+
+
+  /* Add more specific hover effects for other sports categories as needed */
+
+
+  /* Featured Products Section */
+  #featured-products {
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  #featured-products h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .product-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .product-item:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Footer Styling */
+  footer {
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+  }
+
+  footer ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  footer a {
+    color: #fff;
+    text-decoration: none;
+  }
+/* Navigation Bar Styling */
+nav {
+    display: flex;
+    justify-content: space-between; /* Space out the links and stretch across the navbar */
+    align-items: center;
+    padding: 20px;
+    background-color: #111;
+    width: 100%; /* Stretch navbar to the full width of the page */
+  }
+
+  nav .logo a {
+    font-size: 2em;
+    color: #4CAF50;
+    text-decoration: none;
+  }
+
+  nav .navlinks {
+    display: flex;
+    list-style: none;
+    gap: 30px; /* Adds space between the nav links */
+    margin-left: auto; /* Pushes the nav links towards the right */
+  }
+
+  nav .navlinks li a {
+    color: #fff;
+    font-size: 1.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+  }
+
+  nav .navlinks li a:hover {
+    background-color: #4CAF50;
+    color: #111;
+  }
+
+ /* User Info Styling */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.username {
+  font-size: 1rem;
+  color: #fff;
+  font-weight: bold;
+  background-color: #007BFF; /* Adjust to match your theme */
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* Logout Button Styling */
+.logout-btn {
+  font-size: 0.9rem;
+  color: #fff;
+  background-color: #FF4136; /* Red logout button */
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #FF6E60; /* Lighter red on hover */
+}
+
+/* Login Button Styling */
+.login-btn {
+  font-size: 0.9rem;
+  color: #fff;
+  background-color: #007BFF; /* Blue login button */
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+
+  /* If Needed: Responsive design for smaller screens */
+  @media screen and (max-width: 768px) {
+    nav .navlinks {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    nav .navlinks li a {
+      padding: 15px 20px;
+      font-size: 1.2em;
+    }
+  }
+
+
+  /* If Needed: Responsive design for smaller screens */
+  @media screen and (max-width: 768px) {
+    nav .navlinks {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    nav .navlinks li a {
+      padding: 15px 20px;
+      font-size: 1.2em;
+    }
+  }
+
+  /* Additional Space Between Links */
+  nav .navlinks li a {
+    padding: 10px 20px;
+  }
+
+  /* If Needed: Responsive design for smaller screens */
+  @media screen and (max-width: 768px) {
+    nav .navlinks {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    nav .navlinks li a {
+      padding: 15px 20px;
+      font-size: 1.2em;
+    }
+  }
+
+  /* How Kick Off Kit Works Section */
+#how-it-works {
+    padding: 60px 20px;
+    background-image: url("https://i.ibb.co/DRyKLNt/Whats-App-Image-2024-11-11-at-20-48-51-295b109e.jpg"  ); /* Set your background image */
+    background-size: cover;          /* Ensures the background image covers the entire section */
+    background-position: center;     /* Centers the background image */
+ color: white;                    /* Change text color to white for contrast */
+    text-align: center;
+  }
+
+  #how-it-works .how-it-works-content h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+  }
+
+  #how-it-works .steps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);  /* Two columns for medium screens */
+    gap: 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #how-it-works .step {
+    background-color: rgba(0, 0, 0, 0.5); /* Darken the step background for contrast */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  #how-it-works .step h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+  }
+
+  #how-it-works .step p {
+    font-size: 1.2em;
+    color: #fff;  /* Ensure text inside the steps is white for readability */
+    line-height: 1.6;
+  }
+
+  /* Responsive Design for Small Screens */
+  @media (max-width: 768px) {
+    #how-it-works .steps {
+      grid-template-columns: 1fr;  /* One column for small screens */
+    }
+  }
+/* FAQ Section Styling */
+#faq {
+    background-color: #111; /* Dark background */
+    color: #fff; /* White text */
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  #faq h2 {
+    font-size: 2.5em;
+    color: #4CAF50; /* Green accent color */
+    margin-bottom: 30px;
+  }
+
+  .faq-item {
+    margin: 15px auto;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .faq-question {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 1.2em;
+    text-align: left;
+    background-color: #222; /* Darker background for questions */
+    color: #4CAF50; /* Green accent color */
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: space-between; /* Aligns the question and arrow */
+  }
+
+  .faq-question:hover {
+    background-color: #333;
+  }
+
+  .faq-answer {
+    display: none; /* Answers hidden by default */
+    padding: 15px 20px;
+    background-color: #1a1a1a; /* Background for answers */
+    color: #ddd;
+    border-top: 1px solid #333; /* Adds a border between question and answer */
+  }
+
+  .faq-item.active .faq-answer {
+    display: block; /* Displays the answer when active */
+  }
+
+  /* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    color: #fff;
+    background-color: #000; /* Black background for the entire page */
+  }
+
+  /* Navigation */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #111;
+  }
+
+  .logo {
+    font-size: 1.5em;
+    color: #4CAF50; /* Green accent color for the logo */
+  }
+
+  .navlinks {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+
+  .navlinks li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .navlinks li a:hover {
+    color: #4CAF50; /* Hover color matching theme */
+  }
+
+  /* Contact Us Section */
+  #contact {
+    padding: 60px 20px;
+    background-color: #000; /* Black background */
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  #contact h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #4CAF50; /* Green accent for heading */
+    animation: fadeInDown 1s ease-in-out; /* Subtle animation */
+  }
+
+  #contact p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    color: #ddd;
+    animation: fadeIn 1.2s ease-in-out;
+  }
+
+  .contact-info {
+    font-size: 1.2em;
+    line-height: 1.6;
+  }
+
+  .contact-info p {
+    margin: 15px 0;
+    color: #eee; /* Light gray for contact info */
+    animation: fadeIn 1.3s ease-in-out;
+  }
+
+  .contact-info a {
+    color: #4CAF50; /* Green color for links */
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .contact-info a:hover {
+    color: #66bb6a; /* Slightly lighter green on hover */
+    text-decoration: underline;
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+     </style>
+
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="index.html">Kick Off Kit</a>
+      </div>
+      <ul class="navlinks">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'home' %}#about-us">About Us</a></li>
+        <li><a href="{% url 'home' %}#faq">FAQ</a></li>
+        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+
+      </ul>
+      <div class="login">
+        {% if user.is_authenticated %}
+          <div class="user-info">
+            <span class="username">Welcome, {{ user.username }}</span>
+            <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+          </div>
+        {% else %}
+          <a href="#" id="login-btn" class="login-btn">Login</a>
+        {% endif %}
+      </div>
+    </nav>
+  </header>
+
+  <main>
+   {% if user.is_authenticated %}
+<section id="list-equipment">
+  <h1>List Your Sports Equipment</h1>
+  <p>Fill out the form below to list your sports equipment for rent.</p>
+  <form id="equipment-form" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+      {% if form.errors %}
+  <div class="errors">
+    <ul>
+      {% for field in form %}
+        {% for error in field.errors %}
+          <li>{{ field.name }}: {{ error }}</li>
+        {% endfor %}
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
+ <div class="form-group">
+          <label for="name">Equipment Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter equipment name" required>
+        </div>
+        <div class="form-group">
+          <label for="category">Category</label>
+          <select id="category" name="category" required>
+            <option value="">Select a category</option>
+            <option value="football">Football</option>
+            <option value="cricket">Cricket</option>
+            <option value="badminton">Badminton</option>
+            <option value="tennis">Tennis</option>
+            <option value="volleyball">Volleyball</option>
+              <option value="basketball">Basketball</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="price">Rental Price (per day)</label>
+          <input type="number" id="price" name="price" placeholder="Enter rental price" required>
+        </div>
+        <div class="form-group">
+          <label for="condition">Condition</label>
+          <select id="condition" name="condition" required>
+            <option value="">Select condition</option>
+            <option value="new">New</option>
+            <option value="used">Used</option>
+            <option value="fair">Fair</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" name="description" placeholder="Add a short description" rows="4" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" pattern="[0-9]{10}" required>
+        </div>
+         <div class="form-group">
+          <label for="pincode">Phone Number</label>
+          <input type="text" id="pincode" name="pincode" placeholder="Enter your pincode" pattern="[0-9]{6}" required>
+        </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <textarea id="address" name="address" placeholder="Enter your address" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="image">Upload Image</label>
+          <input type="file" id="image" name="image" accept="image/*" required>
+        </div>
+        <button type="submit" class="submit-btn">List Equipment</button>
+  </form>
+</section>
+{% else %}
+<p>You need to <a href="{% url 'SignupPage' %}">log in</a> to list equipment.</p>
+{% endif %}
+
+
+
+
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Kick Off Kit. All rights reserved.</p>
+  </footer>
+ <script>
+       document.getElementById('equipment-form').addEventListener('submit', function (e) {
+      e.preventDefault(); // Prevent form submission
+
+      const pinInput = document.getElementById('pincode');
+      const errorElement = document.getElementById('error');
+      const pinCode = pinInput.value.trim();
+      const regex = /^[1-9]{1}[0-9]{2}\s{0,1}[0-9]{3}$/;
+
+      if (!regex.test(pinCode)) {
+        errorElement.textContent = "Invalid PIN code. Please enter a valid 6-digit PIN.";
+      } else {
+        errorElement.textContent = "";
+        alert("Valid PIN code submitted: " + pinCode);
+        // You can proceed to submit the form or handle data
+      }
+    });
+    </script>
+</body>
+</html>
+

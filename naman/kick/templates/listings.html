@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Equipment Listings</title>
+ {% load static %}
+ <style>
+    /* Basic Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: white;
+}
+
+/* Category Bar */
+.category-bar {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+}
+
+.recommendations {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.category {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.category:hover {
+  background-color: #555;
+}
+
+/* Cart Icon */
+.cart-container {
+  position: relative;
+  display: inline-block;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.cart-icon {
+  font-size: 1.5em;
+  color: white;
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 5px;
+  font-size: 0.9em;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Equipment Grid */
+.equipment-grid {
+  display: flex;
+  gap: 30px;
+  padding: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.item-card {
+  width: 200px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.item-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.image-placeholder {
+  width: 50px;
+  height: 50px;
+  background-color: #e0e0e0;
+  margin-bottom: 10px;
+}
+
+.availability {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.available {
+  background-color: green;
+}
+
+.unavailable {
+  background-color: red;
+}
+
+.status-text {
+  font-size: 0.9em;
+  color: #333;
+}
+
+.rental-price {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #14213d;
+  margin-bottom: 10px;
+}
+
+.add-to-cart-btn {
+  background-color: #14213d;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #2e4d6c;
+}
+
+/* Load More Button */
+.load-more-btn {
+  background-color: #14213d;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 30px auto;
+  transition: background-color 0.3s ease;
+}
+
+.load-more-btn:hover {
+  background-color: #2e4d6c;
+}
+
+/* Pulsing Animation */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+       /* If Needed: Responsive design for smaller screens */
+  @media screen and (max-width: 768px) {
+    nav .navlinks {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    nav .navlinks li a {
+      padding: 15px 20px;
+      font-size: 1.2em;
+    }
+  }
+
+
+  /* If Needed: Responsive design for smaller screens */
+  @media screen and (max-width: 768px) {
+    nav .navlinks {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    nav .navlinks li a {
+      padding: 15px 20px;
+      font-size: 1.2em;
+    }
+  }
+
+  /* Additional Space Between Links */
+  nav .navlinks li a {
+    padding: 10px 20px;
+  }
+
+  /* If Needed: Responsive design for smaller screens */
+  @media screen and (max-width: 768px) {
+    nav .navlinks {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    nav .navlinks li a {
+      padding: 15px 20px;
+      font-size: 1.2em;
+    }
+  }
+
+  /* How Kick Off Kit Works Section */
+#how-it-works {
+    padding: 60px 20px;
+    background-image: url("https://i.ibb.co/DRyKLNt/Whats-App-Image-2024-11-11-at-20-48-51-295b109e.jpg"  ); /* Set your background image */
+    background-size: cover;          /* Ensures the background image covers the entire section */
+    background-position: center;     /* Centers the background image */
+ color: white;                    /* Change text color to white for contrast */
+    text-align: center;
+  }
+
+  #how-it-works .how-it-works-content h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+  }
+
+  #how-it-works .steps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);  /* Two columns for medium screens */
+    gap: 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #how-it-works .step {
+    background-color: rgba(0, 0, 0, 0.5); /* Darken the step background for contrast */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  #how-it-works .step h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+  }
+
+  #how-it-works .step p {
+    font-size: 1.2em;
+    color: #fff;  /* Ensure text inside the steps is white for readability */
+    line-height: 1.6;
+  }
+
+  /* Responsive Design for Small Screens */
+  @media (max-width: 768px) {
+    #how-it-works .steps {
+      grid-template-columns: 1fr;  /* One column for small screens */
+    }
+  }
+/* FAQ Section Styling */
+#faq {
+    background-color: #111; /* Dark background */
+    color: #fff; /* White text */
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  #faq h2 {
+    font-size: 2.5em;
+    color: #4CAF50; /* Green accent color */
+    margin-bottom: 30px;
+  }
+
+  .faq-item {
+    margin: 15px auto;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .faq-question {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 1.2em;
+    text-align: left;
+    background-color: #222; /* Darker background for questions */
+    color: #4CAF50; /* Green accent color */
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: space-between; /* Aligns the question and arrow */
+  }
+
+  .faq-question:hover {
+    background-color: #333;
+  }
+
+  .faq-answer {
+    display: none; /* Answers hidden by default */
+    padding: 15px 20px;
+    background-color: #1a1a1a; /* Background for answers */
+    color: #ddd;
+    border-top: 1px solid #333; /* Adds a border between question and answer */
+  }
+
+  .faq-item.active .faq-answer {
+    display: block; /* Displays the answer when active */
+  }
+
+  /* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    color: #fff;
+    background-color: #000; /* Black background for the entire page */
+  }
+
+  /* Navigation */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #111;
+  }
+
+  .logo {
+    font-size: 1.5em;
+    color: #4CAF50; /* Green accent color for the logo */
+  }
+
+  .navlinks {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+
+  .navlinks li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .navlinks li a:hover {
+    color: #4CAF50; /* Hover color matching theme */
+  }
+       .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+
+  .nav-links {
+    list-style-type: none;
+    display: flex;
+  }
+
+  .nav-links li {
+    margin: 0 15px;
+  }
+
+  .nav-links a, .nav-links button {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  button#login-btn {
+    background-color: #333;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+  }
+
+  button#login-btn:hover {
+    background-color: #555;
+  }
+
+ /* Hero Section with background image */
+/* Hero Section */
+#hero {
+    background-image: url("https://i.ibb.co/yRsWGx3/vikram-tkv-JO19-K0-HDDXI-unsplash.png" ); /* Set your background image */
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
+  .hero-content {
+    text-align: center;
+    z-index: 2;
+  }
+
+  .hero-content h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+  }
+
+  .hero-content p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+
+  button.get-started {
+    padding: 12px 25px;
+    font-size: 1.1em;
+    color: #fff;
+    background-color: #000;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+  }
+
+  button.get-started:hover {
+    background-color: #333;
+  }
+
+/* About Us Section */
+#about-us {
+    padding: 60px 20px;
+    background: url("https://i.ibb.co/YTWCrGD/wallpaperflare-com-wallpaper-27.png") center/cover no-repeat; /* Add the path to your background image */
+    height: 400px; /* Adjust height as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Set background to black */
+    color: rgb(0, 0, 0);             /* Change text color to white for contrast */
+    text-align: center;
+
+  }
+
+  #about-us .about-content h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+
+  #about-us .about-content p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
+  }
+
+  button.learn-more {
+    padding: 10px 20px;
+    font-size: 1.1em;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  button.learn-more:hover {
+    background-color: #45a049;
+  }
+
+
+
+  /* Contact Us Section */
+  #contact-us {
+    padding: 60px 20px;
+    background-color: #fff;
+    text-align: center;
+  }
+
+  #contact-us h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+
+  #contact-us p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+
+  /* Categories Section */
+  #categories {
+    padding: 60px 20px;
+    background-color: black;  /* Change background color to black */
+    color: white;             /* Set text color to white for contrast */
+    text-align: center;
+  }
+
+#categories h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.category-card {
+  background-color: #3b257c;
+  padding: 30px 20px;
+  width: 180px;  /* Adjusted width */
+  border-radius: 8px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  font-size: 1.1em;
+  text-align: center;
+}
+
+.category-card:hover {
+  transform: scale(1.05);
+  background-color: #ddd;
+}
+
+.category-card[data-sport="football"]:hover {
+  background-color: #000000; /* Highlight football category on hover */
+  color: white;
+}
+
+.category-card[data-sport="cricket"]:hover {
+  background-color: #000000; /* Highlight cricket category on hover */
+  color: white;
+}
+.category-card[data-sport="volleyball"]:hover {
+    background-color: #000000; /* Highlight cricket category on hover */
+    color: white;
+  }
+  .category-card[data-sport="badminton"]:hover {
+    background-color: #000000; /* Highlight cricket category on hover */
+    color: white;
+  }
+  .category-card[data-sport="tennis"]:hover {
+    background-color: #000000; /* Highlight cricket category on hover */
+    color: white;
+  }
+  .category-card[data-sport="basketball"]:hover {
+    background-color: #000000; /* Highlight cricket category on hover */
+    color: white;
+  }
+
+
+
+  /* Add more specific hover effects for other sports categories as needed */
+
+
+  /* Featured Products Section */
+  #featured-products {
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  #featured-products h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .product-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .product-item:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Footer Styling */
+  footer {
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+  }
+
+  footer ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  footer a {
+    color: #fff;
+    text-decoration: none;
+  }
+/* Navigation Bar Styling */
+nav {
+    display: flex;
+    justify-content: space-between; /* Space out the links and stretch across the navbar */
+    align-items: center;
+    padding: 20px;
+    background-color: #111;
+    width: 100%; /* Stretch navbar to the full width of the page */
+  }
+
+  nav .logo a {
+    font-size: 2em;
+    color: #4CAF50;
+    text-decoration: none;
+  }
+
+  nav .navlinks {
+    display: flex;
+    list-style: none;
+    gap: 30px; /* Adds space between the nav links */
+    margin-left: auto; /* Pushes the nav links towards the right */
+  }
+
+  nav .navlinks li a {
+    color: #fff;
+    font-size: 1.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+  }
+
+  nav .navlinks li a:hover {
+    background-color: #4CAF50;
+    color: #111;
+  }
+/* User Info Styling */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.username {
+  font-size: 1rem;
+  color: #fff;
+  font-weight: bold;
+  background-color: #007BFF; /* Adjust to match your theme */
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+/* Logout Button Styling */
+.logout-btn {
+  font-size: 0.9rem;
+  color: #fff;
+  background-color: #FF4136; /* Red logout button */
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #FF6E60; /* Lighter red on hover */
+}
+
+/* Login Button Styling */
+.login-btn {
+  font-size: 0.9rem;
+  color: #fff;
+  background-color: #007BFF; /* Blue login button */
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+ </style>
+</head>
+<body
+       style="background-color: white;" >
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="index.html">Kick Off Kit</a>
+      </div>
+      <ul class="navlinks">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'home' %}#about-us">About Us</a></li>
+        <li><a href="{% url 'home' %}#faq">FAQ</a></li>
+        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+
+      </ul>
+      <div class="login">
+        {% if user.is_authenticated %}
+          <div class="user-info">
+            <span class="username">Welcome, {{ user.username }}</span>
+            <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+          </div>
+        {% else %}
+          <a href="#" id="login-btn" class="login-btn">Login</a>
+        {% endif %}
+      </div>
+    </nav>
+  </header>
+
+    <div class="category-bar">
+        <span class="recommendations">More Recommendations</span>
+        <button class="category"><a href="{% url 'listings' category='football' %}" style="color: rgb(247, 247, 247); ">Football</a></button>
+        <button class="category"><a href="{% url 'listings' category='cricket' %}" style="color: rgb(247, 247, 247);">cricket</a></button>
+        <button class="category"><a href="{% url 'listings' category='basketball' %}" style="color: rgb(247, 247, 247);" >Basketball</a></button>
+        <button class="category"><a href="{% url 'listings' category='tennis' %}" style="color: rgb(247, 247, 247);">Tennis</a></button>
+        <button class="category"><a href="{% url 'listings' category='badminton' %}" style="color: rgb(247, 247, 247);" >Badminton</a></button>
+        <button class="category"><a href="{% url 'listings' category='volleyball' %}" style="color: rgb(247, 247, 247); ">Volleyball</a></button>
+
+
+
+    </div>
+    <h1>{{ category|capfirst }} Equipment</h1>
+
+
+    <div class="equipment-grid">
+      {% for equipment in equipment_list %}
+      <div class="item-card">
+
+        <img src="{{ equipment.image.url }}" alt="{{ equipment.name }}" class="item-image" width="150" height="150">
+
+
+
+          <p class="rental-price">{{ equipment.name }}</p>
+
+        <p class="rental-price">₹{{ equipment.price }} / day</p>
+        <button class="add-to-cart-btn">
+             <a href="{% url 'product' product_id=equipment.id %}" style="color: white; text-decoration: none;">Check it out</a>
+        </button>
+      </div>
+      {% empty %}
+        <p>No equipment available for {{ category|capfirst }} at the moment.</p>
+      {% endfor %}
+    </div>
+
+
+  </body>
+  </html>
